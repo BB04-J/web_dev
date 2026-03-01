@@ -139,4 +139,5 @@ class Calculator {
 }
 
 const calc = new Calculator();
-console.log(calc.calculate("100+200*3-(50/5)+7*(8-3)"));  // 725
+
+console.log(calc.calculate("100+200*3-(50/5)+7*(8-3)"));  
