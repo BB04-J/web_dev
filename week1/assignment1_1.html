@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Visual Studio Code - Code Editor</title>
+
+    <style>
+        body {
+            margin: 0;
+            background: #0d1117;
+            color: #9ba3b4;
+            font-family: Arial, sans-serif;
+            position: relative;
+            z-index: 0;
+        }
+
+        .navbar {
+            height: 64px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #0e131a;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #c3d0e5;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #9fb1d1;
+            font-size: 14px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #161b22;
+            padding: 6px 10px;
+            border-radius: 6px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            outline: none;
+            color: white;
+            width: 140px;
+        }
+
+        .navbar .download-btn {
+            background-color: #0078d4;
+            /* VS blue */
+            color: white;
+            border: none;
+
+            padding: 8px 18px;
+            border-radius: 6px;
+
+            font-size: 14px;
+            font-weight: 600;
+
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .navbar .download-btn:hover {
+            background-color: #106ebe;
+        }
+
+
+
+        input {
+            padding: 5px;
+        }
+
+        button {
+            padding: 6px 12px;
+        }
+
+        .heading {
+
+            font-weight: 700;
+            margin-top: 1rem;
+            line-height: 120%;
+            letter-spacing: -0.8px;
+            font-size: 55px;
+            font-family: apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+                sans-serif;
+            color: #e6eefA;
+            text-align: center;
+            font-size: 70px;
+            margin: 0;
+            margin-top: 10px;
+
+
+
+        }
+
+        .mainblock {
+            width: 350px;
+            background-color: #161b22;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 8px;
+
+
+
+            margin: 30px auto 0 auto;
+            /* 100px top, auto left/right, 0 bottom */
+
+            padding: 20px 30px;
+            /* vertical 20px, horizontal 30px */
+        }
+
+        .webref {
+            margin-top: 20px;
+        }
+
+
+        .webref a {
+
+            text-decoration: underline;
+            color: #c3d0e5;
+            font-size: 13px;
+            font-weight: 500;
+            line-height: 160%;
+            margin-top: 16px;
+        }
+
+        .download-btn {
+            background-color: #e6edf3;
+            border: none;
+            padding: 16px 32px;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            width: 100%;
+            justify-content: center;
+
+
+        }
+
+        /* Shared wrapper for BOTH blocks */
+        .section-wrapper {
+            max-width: 1200px;
+            /* keeps both blocks same width */
+            margin: 100px auto;
+            /* centers entire section */
+            padding: 0 40px;
+            /* small side breathing space */
+        }
+
+        /* Block 1 – Big preview image */
+        .image {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Block 2 – Three columns */
+        .column3 {
+            margin-top: 80px;
+            /* space between block 1 and block 2 */
+
+            display: flex;
+            gap: 40px;
+            /* clean spacing between cards */
+        }
+
+        /* Each card inside column3 */
+        .column3>div {
+            flex: 1;
+            /* makes all 3 equal width */
+        }
+
+        /* Image sizing */
+        .preview {
+            width: 100%;
+            /* fills its card */
+            height: auto;
+            border-radius: 12px;
+        }
+
+        .landscape {
+            margin-top: 80px;
+            width: 800px;
+            height: auto;
+            padding-left: 200px;
+
+            display: flex;
+            justify-content: center;
+        }
+
+        .textimg {
+            max-width: 1400px;
+            margin: 120px auto;
+            display: flex;
+            justify-content: center;
+
+            align-items: center;
+            gap: 80px;
+        }
+
+        .text {
+            flex: 1.6;
+
+        }
+
+        .textimg h2 {
+            font-size: 30px;
+        }
+
+
+        .textimg p {
+            color: #9fb1d1;
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+        }
+
+        .textimg a {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4daafc;
+
+        }
+
+        .textimg img {
+            flex: 1.6;
+
+            max-width: 1000px;
+
+            width: 100%;
+        }
+
+        .texting2 {
+            margin: 120px auto;
+            max-width: 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .texting2 h2 {
+            font-size: 30px;
+        }
+
+        .texting2 p {
+            color: #9fb1d1;
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+        }
+
+        .texting2 img {
+            flex: 1.6;
+
+            max-width: 1000px;
+
+            width: 100%;
+        }
+
+        .texting2 a {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4daafc;
+
+        }
+
+        .text2 {
+            flex: 1.6;
+
+
+        }
+
+
+
+
+        .texting3 {
+            margin: 120px auto;
+            max-width: 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .texting3 h2 {
+            font-size: 30px;
+        }
+
+        .texting3 p {
+            color: #9fb1d1;
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+        }
+
+        .texting3 img {
+            flex: 1.6;
+
+            max-width: 1000px;
+
+            width: 100%;
+        }
+
+        .texting3 a {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4daafc;
+
+        }
+
+        .text3 {
+            flex: 1.6;
+
+
+        }
+
+
+        .texting4 {
+            margin: 120px auto;
+            max-width: 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .texting4 h2 {
+            font-size: 30px;
+        }
+
+        .texting4 p {
+            color: #9fb1d1;
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+        }
+
+        .texting4 img {
+            flex: 1.6;
+
+            max-width: 1000px;
+
+            width: 100%;
+        }
+
+        .texting4 a {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4daafc;
+
+        }
+
+        .text4 {
+            flex: 1.6;
+
+
+        }
+
+        .texting5 {
+            margin: 120px auto;
+            max-width: 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .texting5 h2 {
+            font-size: 30px;
+        }
+
+        .texting5 p {
+            color: #9fb1d1;
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+        }
+
+        .texting5 img {
+            flex: 1.6;
+
+            max-width: 1000px;
+
+            width: 100%;
+        }
+
+        .texting5 a {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4daafc;
+
+        }
+
+        .text5 {
+            flex: 1.6;
+
+
+        }
+
+        .texting6 {
+            margin: 120px auto;
+            max-width: 1400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .texting6 h2 {
+            font-size: 30px;
+        }
+
+        .texting6 p {
+            color: #9fb1d1;
+            max-width: 800px;
+            line-height: 1.9;
+            margin-bottom: 24px;
+            font-weight: 600;
+            font-size: 18px;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+
+        }
+
+        .texting6 img {
+            flex: 1.6;
+
+            max-width: 1000px;
+
+            width: 100%;
+        }
+
+        .texting6 a {
+            cursor: pointer;
+            font-weight: 600;
+            color: #4daafc;
+
+        }
+
+        .text6 {
+            flex: 1.6;
+
+
+        }
+
+        .texting7 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+
+        }
+
+        .texting7 h2 {
+            font-size: 30px;
+            color: #c3d0e5;
+            font-weight: 600px;
+
+        }
+
+        .texting7 p {
+            color: #9fb1d1;
+            font-size: 18px;
+            font-weight: 500px;
+            /* line-height: 160%; */
+
+        }
+
+        .img1 {
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .img2 {
+            margin-top: 90px;
+            max-width: 1400px;
+            padding-left: 300px;
+            padding-right: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+        }
+
+        .binary-bg {
+            position: fixed;
+            inset: 0;
+
+            width: 100vw;
+            height: 100vh;
+
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 18px;
+
+            color: #333;
+
+
+            letter-spacing: 4px;
+            /* increase space horizontally */
+
+
+
+            white-space: pre;
+            overflow: hidden;
+
+            pointer-events: none;
+
+            z-index: -1;
+            /* 🔥 IMPORTANT */
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="binary-bg" id="binary"></div>
+
+    <!-- rest of your content -->
+
+
+
+
+
+    <nav class="navbar">
+
+        <div class="nav-left">
+            <div class="logo">
+                <img src="download.png" width="24">
+                <span>Visual Studio Code</span>
+            </div>
+
+            <div class="nav-links">
+                <a href="#">Docs</a>
+                <a href="#">Updates</a>
+                <a href="#">Blog</a>
+                <a href="#">API</a>
+                <a href="#">Extensions</a>
+                <a href="#">MCP</a>
+                <a href="#">FAQ</a>
+                <a href="#">Events</a>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            <img src="theme-light.svg" width="18">
+
+            <div class="search-box">
+                <input type="text" placeholder="Search">
+                <span>Ctrl+Shift+P</span>
+            </div>
+
+            <button class="download-btn">Download</button>
+        </div>
+
+    </nav>
+
+
+    <div>
+        <h1 class="heading">The open source</h1>
+        <h1 class="heading">AI code editor</h1>
+    </div>
+
+    <div class="mainblock">
+        <button class="download-btn">
+            <img src="https://static.vecteezy.com/system/resources/previews/045/898/833/non_2x/microsoft-windows-computer-operating-system-logo-black-icon-free-vector.jpg"
+                width="30px">
+            Download for Windows
+        </button>
+        <div class="webref">
+            <a href="Web">Web</a>
+            ,
+
+            <a href="Web">Insiders edition</a>
+            , or
+
+            <a href="Web">other platforms</a>
+        </div>
+        <div style="color:  #e6eefA;font-size: 11px;
+         font-weight: 400;margin-top: 16px;">
+            By using VS Code, you agree to its <a href="#" style="text-decoration: underline;font-weight: 50px;
+            color: #c3d0e5">license</a> and <a href="#" style="text-decoration: underline;font-weight: 50px;
+            color: #c3d0e5">privacy statement.</a>
+        </div>
+
+    </div>
+
+    <div class="section-wrapper">
+
+        <!-- Block 1 -->
+        <div class="image">
+            <img class="preview" src="Screenshot 2026-02-14 184253.png" alt="dynamic image">
+        </div>
+
+        <!-- Block 2 -->
+        <section class="column3">
+
+            <div>
+                <img class="preview" src="col1.png" alt="1st column picture">
+            </div>
+
+            <div>
+                <img class="preview" src="col2.png" alt="2nd column picture">
+            </div>
+
+            <div>
+                <img class="preview" src="col3.png" alt="3rd column picture">
+            </div>
+
+        </section>
+        <div class="landscape">
+            <img src="landscape0.png" alt="">
+        </div>
+
+    </div>
+    <div class="textimg">
+
+        <div class="text">
+            <h2>Agent mode</h2>
+            <p>Tackle complex, multi-step tasks. Agent mode reads your
+                codebase, suggests edits across files, runs terminal
+                commands, and responds to compile or test failures — all
+                in a loop until the job is done. Further refine agent mode
+                to fit your team's workflows with VS Code extensions and
+                Model Context Protocol (MCP) servers.
+            </p>
+            <a href="https://code.visualstudio.com/docs/copilot/chat/chat-agent-mode" rel="noopener">Build with agent
+                mode</a>
+        </div>
+
+        <img src="text&img1.png" alt="">
+    </div>
+
+    <div class="texting2">
+        <div class="text2">
+            <h2>Next edit suggestions</h2>
+            <p>VS Code predicts your next move as you code. Use the Tab key to accept AI-powered
+                suggestions right in your editor. It intelligently recommends what to change
+                — and where — based on the edits you're already making.
+            </p>
+            <a href=""><a
+                    href="https://code.visualstudio.com/docs/copilot/ai-powered-suggestions#_next-edit-suggestions"
+                    rel="noopener">Code with AI-powered suggestions</a>
+        </div>
+        <div>
+            <img src="text&img2.png" alt="">
+        </div>
+    </div>
+
+    <div class="texting3">
+        <div class="text3">
+            <h2>Code with extensions</h2>
+            <p>Customize VS Code with AI-powered functionality from extensions and Model Context
+                Protocol servers to use in Chat. Or, <a href="#">build your own extension </a>
+                to power your team's unique scenarios.
+            </p>
+
+        </div>
+        <div>
+            <img src="img5.png" alt="">
+            <div style="text-align: center;">View 80k+ extensions in the <a href="#"> Extension Marketplace</a></div>
+        </div>
+    </div>
+
+
+    <div class="texting4">
+
+        <div class="text4">
+            <h2>Code in language</h2>
+            <p>VS Code supports almost every major programming language. Several ship in the box, like JavaScript,
+                TypeScript, CSS, and HTML, but extensions for others can be found in the VS Code Marketplace.
+            </p>
+        </div>
+        <div>
+            <img src="img6.png" alt="">
+        </div>
+    </div>
+
+    <div class="texting5">
+
+        <div class="text5">
+            <h2>Fully customizable</h2>
+            <p>Customize your VS Code UI and layout so that it fits your coding style.</p>
+            <p><a href="#"> Color themes</a> let you modify the colors in VS Code's user interface to suit your
+                preferences and work environment.</p>
+            <p><a href="#">Settings sync</a> enables you to share your user settings across your VS Code instances with
+                the Settings Sync feature.</p>
+            <p><a href="#">Profiles</a> let you create sets of customizations and quickly switch between them or share
+                them with others.</p>
+
+        </div>
+
+        <div>
+            <img src="img7.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="texting6">
+        <div class="text6">
+            <h2>Code anywhere</h2>
+            <p>Code wherever you're most productive, whether you're connected to the cloud, a remote
+                repository, or in the browser with VS Code for the Web (vscode.dev).
+            </p>
+            <p><a href="#"> Built in source control</a> empowers you with Git support out-of-the-box. Many other source
+                control providers are available through extensions.
+            </p>
+            <p>
+                <a href="#">Github Codespaces</a> provides cloud-powered development environments for any activity -
+                whether
+                it's a long-term project, or a short-term task like reviewing a pull request.
+            </p>
+
+        </div>
+
+        <div>
+            <img src="img8.png" alt="">
+        </div>
+
+    </div>
+
+    <div class="texting7">
+        <h2>
+            Code with rich features
+        </h2>
+        <p style="margin-bottom: 0.3px; margin-top: 10px;">There's a lot more to an editor. Whether it's using built-in
+            features or</p>
+        <p>rich extensions, there's something for everyone.</p>
+    </div>
+
+    <div class="img1">
+        <img src="img9.png" alt="">
+    </div>
+
+    <div class="img2">
+
+        <img src="img10.png" alt="">
+        <img src="https://code.visualstudio.com/assets/icons/microsoft.svg" alt="Microsoft homepage">
+
+    </div>
+
+    <div class="binary-bg" id="binary"></div>
+
+    <!-- your whole site -->
+
+    <script>
+        const binary = document.getElementById("binary");
+        let text = "";
+
+        for (let row = 0; row < 200; row++) {
+            for (let col = 0; col < 200; col++) {
+                text += Math.random() > 0.5 ? "1" : "0";
+            }
+            text += "\n";
+        }
+
+        binary.textContent = text;
+    </script>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
