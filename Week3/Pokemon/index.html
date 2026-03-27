@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pokemon</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="inputscreen">
+        <h1>Pokemon Generator</h1>
+        <h3>Enter the number of pokemon required </h3>
+        <input type="number" id="pokemonId" placeholder="Enter number">
+        <!-- <select  id="pokemon_type">
+            <option value="fire">🔥Fire</option>
+            <option value="water">💧Water</option>
+            <option value="grass">🌱Grass</option>
+            <option value="electric">⚡Electric</option>
+        </select> -->
+        <h3>Select a type:</h3>
+        <div class="type-buttons">
+            <button type="button" onclick="select_type('fire',event)" class="type-btn">🔥 Fire</button>
+            <button type="button" onclick="select_type('water',event)" class="type-btn">💧 Water</button>
+            <button type="button" onclick="select_type('grass',event)" class="type-btn">🌿 Grass</button>
+            <button type="button" onclick="select_type('electric',event)" class="type-btn">⚡ Electric</button>
+        </div>
+
+        <button type="button" onclick="generatePokemon()">Generate Pokemon</button>
+    </div>
+
+    <div class="card-container" style="display: none;">
+        <button type="button" onclick="goback()">Back</button>
+        <h1>Pokemon Cards</h1>
+        
+
+        <div id="card">
+
+            
+        </div>
+    </div>
+
+    <script src="logic.js"></script>
+
+</body>
+
+</html>
