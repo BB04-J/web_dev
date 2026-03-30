@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Builder</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header>
+        <h1>Form Builder</h1>
+        
+    </header>
+    <div class="gradient-bg">
+        <section class="container">
+            <section class="config-pane" aria-label="Configuration">
+                <h2>Form Elements</h2>
+                <div class="Elements">
+                    <select name="fieldtype" id="fieldtype">
+                        <option value="text">Text Input</option>
+                        <option value="checkbox">Checkbox</option>
+                        <option value="radio">Radio Button</option>
+                    </select>
+                    <input type="text" placeholder="Enter label" id="labelInput">
+                    <button type="button" id="addElement">Add Element</button>
+                </div>
+            </section>
+            <section class="preview-pane" aria-label="Live preview">
+                <h2>Form Preview</h2>
+                <div id="formPreview"></div>
+            </section>
+        </section>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

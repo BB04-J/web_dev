@@ -1,0 +1,157 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* DARK THEME COLORS */
+:root {
+  --bg: #0a0a0a;
+  --surface: #1a1a1a;
+  --text: #e5e5e5;
+  --border: #333;
+  --input-bg: #111;
+}
+
+/* BODY */
+body {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+/* HEADER */
+header {
+  max-width: 1100px;
+  margin: 20px auto 0;
+  padding: 15px 20px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h1 {
+  font-size: 1.8rem;
+}
+
+/* MAIN CONTAINER */
+.container {
+  display: flex;
+  gap: 2rem;
+
+  max-width: 1100px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+/* PANELS */
+.config-pane,
+.preview-pane {
+  flex: 1;
+  background: var(--surface);
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  transition: 0.3s;
+}
+
+.config-pane:hover,
+.preview-pane:hover {
+  transform: translateY(-3px);
+}
+
+/* HEADINGS */
+h2 {
+  margin-bottom: 15px;
+  color: #f5f5f5;
+}
+
+/* INPUTS */
+select,
+input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+
+  background: var(--input-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+}
+
+/* BUTTON */
+button {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  background: #6366f1;
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  background: #4f46e5;
+}
+
+/* DELETE BUTTON */
+.delete-btn {
+  background: #ef4444;
+}
+
+.delete-btn:hover {
+  background: #dc2626;
+}
+
+/* FIELD ROW */
+.field-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 10px;
+  margin-bottom: 12px;
+
+  background: #111;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+
+.field-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+
+  background: #111;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.field-content label {
+  min-width: 80px;
+}
+
+.field-content input {
+  flex: 1;
+  background: #020617;
+}
+
+/* FOCUS EFFECT */
+input:focus {
+  outline: none;
+  border-color: #6366f1;
+}
+.delete-btn {
+  margin-left: 12px;
+  background: #ef4444;
+  padding: 6px 10px;
+  font-size: 13px;
+  border-radius: 6px;
+}
