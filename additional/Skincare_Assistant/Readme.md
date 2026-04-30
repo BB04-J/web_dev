@@ -46,4 +46,4 @@ A full-stack MERN application that serves as a personalized skincare assistant. 
 
 ---
 
-*Built by Antigravity as a comprehensive Full-Stack Portfolio Project.*
+
