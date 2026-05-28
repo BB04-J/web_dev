@@ -1,0 +1,265 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback';
+  --font-serif: 'Playfair Display', 'Playfair Display Fallback';
+  --color-background: #D2C2AD;
+  --color-foreground: #291C0E;
+  --color-card: #faf6f0;
+  --color-card-foreground: #291C0E;
+  --color-popover: #faf6f0;
+  --color-popover-foreground: #291C0E;
+  --color-primary: #6E473B;
+  --color-primary-foreground: #E1D4C2;
+  --color-secondary: #BEB5A9;
+  --color-secondary-foreground: #291C0E;
+  --color-muted: #BEB5A9;
+  --color-muted-foreground: #6E473B;
+  --color-accent: #A78D78;
+  --color-accent-foreground: #faf6f0;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #ffffff;
+  --color-border: #A78D78;
+  --color-input: #BEB5A9;
+  --color-ring: #6E473B;
+  --color-chart-1: #6E473B;
+  --color-chart-2: #A78D78;
+  --color-chart-3: #BEB5A9;
+  --color-chart-4: #E1D4C2;
+  --color-chart-5: #291C0E;
+  --radius-sm: 0.375rem;
+  --radius-md: 0.625rem;
+  --radius-lg: 0.625rem;
+  --radius-xl: 1rem;
+}
+
+.dark {
+  --color-background: #291C0E;
+  --color-foreground: #E1D4C2;
+  --color-card: #3d2b18;
+  --color-card-foreground: #E1D4C2;
+  --color-popover: #3d2b18;
+  --color-popover-foreground: #E1D4C2;
+  --color-primary: #A78D78;
+  --color-primary-foreground: #291C0E;
+  --color-secondary: #6E473B;
+  --color-secondary-foreground: #E1D4C2;
+  --color-muted: #6E473B;
+  --color-muted-foreground: #BEB5A9;
+  --color-accent: #BEB5A9;
+  --color-accent-foreground: #291C0E;
+  --color-destructive: #ef4444;
+  --color-destructive-foreground: #1a1410;
+  --color-border: #6E473B;
+  --color-input: #6E473B;
+  --color-ring: #A78D78;
+  --color-chart-1: #A78D78;
+  --color-chart-2: #BEB5A9;
+  --color-chart-3: #6E473B;
+  --color-chart-4: #291C0E;
+  --color-chart-5: #E1D4C2;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground font-sans;
+  }
+}
+
+/* 3D Premium Card Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-float-cozy {
+  animation: float 5s ease-in-out infinite;
+}
+
+.dessert-card-3d {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease, border-color 0.3s ease;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.dessert-card-3d:hover {
+  transform: translateY(-8px) rotateX(4deg) rotateY(-4deg);
+  box-shadow: 0 25px 50px -12px rgba(110, 71, 59, 0.35);
+  border-color: var(--color-primary);
+}
+
+.dessert-image-container-3d {
+  transform-style: preserve-3d;
+}
+
+.dessert-image-3d {
+  transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dessert-card-3d:hover .dessert-image-3d {
+  transform: scale(1.08) translateZ(30px);
+}
+
+/* Floating assets in carousel */
+@keyframes float-asset-1 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-15px, -25px) rotate(25deg) scale(1.15);
+  }
+}
+@keyframes float-asset-2 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(20px, -22px) rotate(-30deg) scale(0.85);
+  }
+}
+@keyframes float-asset-3 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(-18px, 18px) rotate(15deg) scale(1.1);
+  }
+}
+@keyframes float-asset-4 {
+  0%, 100% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+  }
+  50% {
+    transform: translate(22px, 15px) rotate(-22deg) scale(1.05);
+  }
+}
+
+.animate-float-asset-1 {
+  animation: float-asset-1 4.5s ease-in-out infinite;
+}
+.animate-float-asset-2 {
+  animation: float-asset-2 5.2s ease-in-out infinite;
+}
+.animate-float-asset-3 {
+  animation: float-asset-3 4s ease-in-out infinite;
+}
+.animate-float-asset-4 {
+  animation: float-asset-4 6s ease-in-out infinite;
+}
+
+/* Premium 3D Card and Carousel Perspective styles */
+.card-3d-container {
+  perspective: 1800px;
+}
+
+.card-3d-body {
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.8s ease;
+}
+
+.text-stroke-premium {
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.12);
+  color: transparent;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.05);
+}
+
+.text-stroke-dark-premium {
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.08);
+  color: transparent;
+}
+
+.carousel-3d-viewport {
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.carousel-cup-3d {
+  transform-style: preserve-3d;
+  transition: transform 0.85s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.85s, filter 0.85s;
+}
+
+.cup-shadow-premium {
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 
+              0 0 40px rgba(255, 255, 255, 0.1);
+}
+
+/* Dynamic drifting background particles */
+@keyframes drift-slow-clockwise {
+  0% {
+    transform: rotate(0deg) translate(20px) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translate(20px) rotate(-360deg);
+  }
+}
+
+@keyframes drift-slow-counter {
+  0% {
+    transform: rotate(360deg) translate(15px) rotate(-360deg);
+  }
+  100% {
+    transform: rotate(0deg) translate(15px) rotate(0deg);
+  }
+}
+
+.animate-drift-cw {
+  animation: drift-slow-clockwise 20s linear infinite;
+}
+
+.animate-drift-ccw {
+  animation: drift-slow-counter 25s linear infinite;
+}
+
+/* Premium dynamic Coffee Corner glassmorphic navbar styling */
+.coffee-navbar {
+  background-color: rgba(18, 11, 7, 0.93) !important; /* Premium ultra-dark espresso chocolate shade */
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.45) !important;
+}
+
+.coffee-navbar span, 
+.coffee-navbar a {
+  color: rgba(255, 248, 240, 0.85) !important; /* Warm creamy ivory for standard items */
+  font-weight: 600 !important;
+  transition: all 0.3s ease;
+}
+
+.coffee-navbar a:hover {
+  color: #ffffff !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Perfect contrast for the active tab pill */
+.coffee-navbar a[class*="bg-primary"] {
+  background-color: #fcf9f5 !important; /* Ivory cream active pill */
+  color: #120b07 !important; /* Deep dark espresso text for maximum contrast! */
+  font-weight: 800 !important;
+}
+
+.coffee-navbar .text-muted-foreground {
+  color: rgba(255, 248, 240, 0.6) !important;
+}
+
+.coffee-navbar button.bg-destructive {
+  background-color: rgba(239, 68, 68, 0.25) !important;
+  border: 1px solid rgba(239, 68, 68, 0.3) !important;
+  color: #fca5a5 !important;
+  transition: all 0.3s ease;
+}
+
+.coffee-navbar button.bg-destructive:hover {
+  background-color: rgba(239, 68, 68, 0.45) !important;
+  color: #ffffff !important;
+}

@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+jspm_packages/
+web_modules/
+
+# Environment Variables & Secrets (Keep confidential!)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+
+# Build outputs
+dist/
+build/
+.next/
+out/
+.docusaurus/
+
+# IDEs & System files
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.DS_Store
+Thumbs.db
+
+# TypeScript Build Info
+*.tsbuildinfo
