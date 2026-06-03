@@ -1,0 +1,15 @@
+const express = require("express");
+
+const userRoutes = require("./routes/user");
+const todoRoutes = require("./routes/todo");
+
+const app = express();
+
+app.use(express.json());
+
+app.use("/user",userRoutes);
+app.use("/todo",todoRoutes);
+
+app.listen(3000,()=>{
+   console.log("Server running");
+});
