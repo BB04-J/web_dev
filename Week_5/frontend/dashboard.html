@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Taskify — Dashboard</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<!-- Database/API Error Notification Banner -->
+	<div id="errorBanner" class="error-banner hidden">
+		<span class="error-msg" id="errorMsg">Database connection failed. Please try again.</span>
+		<button class="close-banner-btn" id="closeErrorBtn">&times;</button>
+	</div>
+
+	<div class="app">
+		<header class="topnav">
+			<div class="brand">Taskify</div>
+			<div class="search-wrap">
+				<input class="search" placeholder="Search tasks, notes, or projects..." />
+			</div>
+			<div class="top-actions">
+				<button class="icon-btn" aria-label="notifications">🔔</button>
+				<div class="avatar" id="userAvatar">U</div>
+				<button id="logoutBtn" class="logout-btn">Logout</button>
+			</div>
+		</header>
+
+		<main class="container">
+			<section class="hero">
+				<div class="hero-left">
+					<div class="date" id="dashboardDate">TODAY</div>
+					<h1 class="greeting"><span id="greetingTextDisplay">Good morning</span>, <span id="usernameDisplay">User</span>.</h1>
+					<p class="quote">"The secret of getting ahead is getting started." Let's make today count.</p>
+					<div class="hero-cards">
+						<div class="streak-card card">
+							<div class="streak-label">Productivity Streak</div>
+							<div class="streak-num"><span id="streakNumDisplay">0</span> <span class="small">Days</span></div>
+						</div>
+						<div class="weekly-card card">
+							<div class="weekly-label">Weekly Score</div>
+							<div class="weekly-score">
+								<svg class="ring" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16"/></svg>
+								<div class="weekly-text" id="weeklyScoreText">0%</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="hero-right">
+					<div class="score-card card">
+						<div class="score-title">Daily Score</div>
+						<div class="score-body">
+							<div class="progress-wrap">
+								<svg class="progress-ring" width="120" height="120" viewBox="0 0 120 120">
+									<circle class="ring-bg" cx="60" cy="60" r="52"/>
+									<circle class="ring-fg" cx="60" cy="60" r="52"/>
+								</svg>
+								<div class="progress-text"><span id="todayPercent">0</span>%</div>
+							</div>
+							<div class="score-meta"><span id="taskCountText">0/0 tasks completed</span><br><span class="muted" id="statusMessage">Get started!</span></div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section class="grid">
+				<div class="col main">
+					<div class="card focus-card">
+						<div class="card-head">
+							<h3>Today's Focus</h3>
+							<div class="muted">Your active high priority items</div>
+						</div>
+						<ul class="focus-list" id="focusList">
+							<!-- Will be dynamically populated with uncompleted tasks -->
+						</ul>
+					</div>
+
+					<!-- Overdue & Pending Previous Days Tasks -->
+					<div class="card pending-card hidden" id="pendingTasksCard">
+						<div class="card-head" style="display:flex; justify-content:space-between; align-items:flex-start;">
+							<div>
+								<h3>Overdue & Pending</h3>
+								<div class="muted">Uncompleted tasks from previous days</div>
+							</div>
+							<button class="close-banner-btn" id="closePendingBtn" aria-label="Dismiss">&times;</button>
+						</div>
+						<ul class="task-list" id="pendingTasksList">
+							<!-- Will be dynamically populated -->
+						</ul>
+					</div>
+
+					<div class="card planner-card">
+						<div class="card-head">
+							<h3>Weekly Planner</h3>
+							<div class="muted" id="plannerWeekRange">August 12 - 18, 2024</div>
+						</div>
+						<div class="week-grid" id="weekGrid">
+							<div class="day">MON <div class="date-num">12</div></div>
+							<div class="day">TUE <div class="date-num">13</div></div>
+							<div class="day active">WED <div class="date-num">14</div></div>
+							<div class="day">THU <div class="date-num">15</div></div>
+							<div class="day">FRI <div class="date-num">16</div></div>
+							<div class="day">SAT <div class="date-num">17</div></div>
+							<div class="day">SUN <div class="date-num">18</div></div>
+						</div>
+						<div class="timeblocks" id="plannerTimeblocks">
+							<!-- Will be dynamically populated with user's tasks -->
+						</div>
+					</div>
+				</div>
+
+				<aside class="col side">
+					<div class="card reminder-card">
+						<div class="card-head"><h4>Upcoming Important</h4></div>
+						<div class="reminder-body" id="importantReminderBody">
+							<div class="muted">No upcoming important tasks.</div>
+						</div>
+					</div>
+
+					<div class="card tasks-card">
+						<div class="card-head">
+							<h4>All Tasks</h4>
+							<div class="muted">Create and manage your task checklist</div>
+						</div>
+						
+						<!-- Form to add new tasks to MongoDB -->
+						<form id="addTaskForm" class="add-task-form">
+							<div class="form-row">
+								<input type="text" id="taskInput" placeholder="Task title..." required autocomplete="off" />
+							</div>
+							<div class="form-row">
+								<select id="taskDaySelect" class="form-select" required>
+									<option value="" disabled selected>Select Scheduled Day...</option>
+									<option value="MON">Monday</option>
+									<option value="TUE">Tuesday</option>
+									<option value="WED">Wednesday</option>
+									<option value="THU">Thursday</option>
+									<option value="FRI">Friday</option>
+									<option value="SAT">Saturday</option>
+									<option value="SUN">Sunday</option>
+								</select>
+							</div>
+							<div class="form-row">
+								<input type="text" id="taskTimeInput" placeholder="Time slot (e.g. 10 AM)" autocomplete="off" />
+							</div>
+							<div class="form-row-checkbox">
+								<label class="checkbox-label">
+									<input type="checkbox" id="taskImportantCheckbox" />
+									⭐ Important
+								</label>
+								<button type="submit" class="add-btn">Add</button>
+							</div>
+						</form>
+
+						<ul class="task-list" id="taskList">
+							<!-- Populated from MongoDB -->
+						</ul>
+					</div>
+				</aside>
+			</section>
+		</main>
+	</div>
+
+	<script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Taskify — Organize Your Work, Simplify Your Life</title>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+</head>
+<body class="landing-body">
+	<div class="landing-glow"></div>
+
+	<div class="landing-container">
+		<header class="landing-nav animate-fade-in">
+			<div class="brand-logo">Taskify</div>
+			<div class="nav-actions">
+				<a href="auth.html?mode=login" class="nav-link">Sign In</a>
+				<a href="auth.html?mode=signup" class="btn-primary-glowing">Get Started</a>
+			</div>
+		</header>
+
+		<main class="landing-hero">
+			<div class="hero-text-section animate-slide-up">
+				<div class="badge">COHORT WEEK 5 PROJECT</div>
+				<h1 class="landing-title">Organize your work.<br><span class="gradient-text">Simplify your life.</span></h1>
+				<p class="landing-subtitle">
+					A premium, aesthetic dashboard for developers and students. Track your streak, visualize daily productivity rings, and stay ahead of your schedule — synced securely in real-time.
+				</p>
+				<div class="cta-buttons">
+					<a href="auth.html?mode=signup" class="btn-hero-primary">Create Free Account</a>
+					<a href="auth.html?mode=login" class="btn-hero-secondary">Access Dashboard</a>
+				</div>
+			</div>
+
+			<div class="hero-visual-section animate-fade-in-delayed">
+				<div class="glass-preview-card">
+					<div class="preview-header">
+						<div class="dots"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+						<div class="preview-title">Taskify Dashboard</div>
+					</div>
+					<div class="preview-body">
+						<div class="preview-streak">
+							<span class="emoji">🔥</span>
+							<div class="text">
+								<strong>12 Days</strong>
+								<span class="muted">Productivity Streak</span>
+							</div>
+						</div>
+						<div class="preview-ring-wrap">
+							<svg viewBox="0 0 36 36" class="circular-chart">
+								<path class="circle-bg" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+								<path class="circle" stroke-dasharray="80, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+							</svg>
+							<div class="percentage">80%</div>
+						</div>
+					</div>
+					<div class="preview-task">
+						<div class="checkbox-mock checked">✓</div>
+						<div class="task-title">Review Q3 Marketing Strategy</div>
+					</div>
+				</div>
+			</div>
+		</main>
+
+		<section class="landing-features animate-fade-in-delayed-more">
+			<div class="feature-card-glow">
+				<h3>⚡ Real-Time Sync</h3>
+				<p>Your tasks are immediately stored and retrieved from MongoDB Database securely.</p>
+			</div>
+			<div class="feature-card-glow">
+				<h3>🔥 Streak Tracking</h3>
+				<p>Keep the momentum going. Track consecutive days completed to build lasting habits.</p>
+			</div>
+			<div class="feature-card-glow">
+				<h3>🛡️ JWT Authentication</h3>
+				<p>Rest easy knowing your task checklist is protected by JSON Web Token authorization.</p>
+			</div>
+		</section>
+	</div>
+
+	<script>
+		// Redirect to dashboard directly if already logged in
+		document.addEventListener("DOMContentLoaded", () => {
+			if (localStorage.getItem("token")) {
+				window.location.href = "dashboard.html";
+			}
+		});
+	</script>
+</body>
+</html>
