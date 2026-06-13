@@ -4,7 +4,7 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../db");
 const userMiddleware = require("../middleware/user");
 const userrouter = express.Router();
-const JWT_SECRET = process.env.JWT_SECRET || "taskify_secret";
+const JWT_SECRET = process.env.JWT_SECRET ;
 
 userrouter.post("/signup", async (req, res) => {
     const { username, email, password } = req.body;

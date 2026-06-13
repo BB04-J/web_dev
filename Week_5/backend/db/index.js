@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-mongoose.connect(process.env.MONGO_URL || "mongodb://localhost:27017/taskify")
+mongoose.connect(process.env.MONGO_URL )
     .then(() => console.log("Connected to MongoDB successfully"))
     .catch((err) => console.error("MongoDB connection error:", err));
 
